@@ -17,11 +17,14 @@ Read the files in this order to understand the project:
 
 | Order | File | What It Does |
 |-------|------|-------------|
-| 1 | `App.js` | **Read this first.** The entire app in one file — UI screens, Gemini API calls, transcription, grammar analysis, and all components. |
-| 2 | `index.js` | Entry point that registers `App` as the root component. |
-| 3 | `app.json` | Expo configuration (app name, icons, platform settings). |
-| 4 | `package.json` | Dependencies and scripts. |
-| 5 | `.env` | Environment variables (not committed — you must create your own). |
+| 1 | `App.js` | **Read this first.** The main coordinator — manages state and switches between screens. |
+| 2 | `src/screens/InputScreen.js` | Photo capture, transcription, and text editing UI. |
+| 3 | `src/screens/ResultsScreen.js` | Stats display, annotated essay, and grammar issue cards. |
+| 4 | `src/services/gemini.js` | All Gemini AI calls — transcription and grammar analysis. |
+| 5 | `src/components/AnnotatedEssay.js` | Highlighted essay with tap-to-expand tooltips. |
+| 6 | `src/components/GrammarIssueCard.js` | Single grammar issue card component. |
+| 7 | `src/utils/textStats.js` | Word and paragraph counting helpers. |
+| 8 | `src/styles.js` | All shared styles in one place. |
 
 ## Tech Stack
 
@@ -76,14 +79,26 @@ Read the files in this order to understand the project:
 
 ```
 teacher_friend/
-├── App.js              # Main app (screens, logic, components, styles)
-├── index.js            # Expo entry point
-├── app.json            # Expo config
-├── package.json        # Dependencies & scripts
-├── .env                # API key (not in repo — create your own)
-├── .gitignore          # Ignored files
-├── LICENSE             # MIT License
-└── assets/             # App icons and splash screen
+├── App.js                          # Main app — state + screen switching
+├── src/
+│   ├── screens/
+│   │   ├── InputScreen.js          # Photo capture + transcription
+│   │   └── ResultsScreen.js        # Stats + annotations + issues
+│   ├── components/
+│   │   ├── AnnotatedEssay.js       # Highlighted essay with tooltips
+│   │   └── GrammarIssueCard.js     # Single issue card
+│   ├── services/
+│   │   └── gemini.js               # Gemini AI API calls
+│   ├── utils/
+│   │   └── textStats.js            # Word/paragraph counting
+│   └── styles.js                   # Shared styles
+├── index.js                        # Expo entry point
+├── app.json                        # Expo config
+├── package.json                    # Dependencies & scripts
+├── .env                            # API key (not in repo)
+├── .gitignore
+├── LICENSE                         # MIT License
+└── assets/                         # App icons and splash screen
 ```
 
 ## License
